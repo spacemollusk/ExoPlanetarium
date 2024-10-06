@@ -1,10 +1,22 @@
+using TMPro;
 using UnityEngine;
 
 public class StarClickHandler : MonoBehaviour
 {
     public GameObject infoPanel;
-    public TMPro.TextMeshProUGUI infoText;
+    public TextMeshProUGUI infoText;
 
+    private void Start()
+    {
+        //find the UI info panel
+        infoPanel = GameObject.Find("StarInfoPanel");
+        infoText = GameObject.Find("StarInfoText").GetComponent<TextMeshProUGUI>();
+
+        if (infoPanel != null)
+        {
+            infoPanel.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void Update()
     {

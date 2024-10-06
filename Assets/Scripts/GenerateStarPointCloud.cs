@@ -33,6 +33,14 @@ public class GenerateStarPointCloud : MonoBehaviour
             // Star instatiation at the calculated postion above
             GameObject star = Instantiate(starPrefab, position * scaleFactor, Quaternion.identity);
 
+            // populate the starInfo component of each instatiated star with its data from the table
+            StarInfo starInfo = star.GetComponent<StarInfo>();
+            starInfo.sourceID = row[0];
+            starInfo.ra = ra;
+            starInfo.dec = dec;
+            starInfo.distance = 1.0f / parallax; //parallax distance in parsecs
+            starInfo.magnitude = magnitude;
+
             // Scale the size of the star based on its magnitude
             float starScale = Mathf.Clamp(1.0f / magnitude, 0.1f, 1.0f);
             star.transform.localScale = new Vector3(starScale, starScale, starScale);
